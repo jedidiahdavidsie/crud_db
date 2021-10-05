@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">Contoh database dengan CRUD</a>
+    </header>
+    <div class="container">
+      <div class="container-header">
+        <h1>Database Produk</h1>
+        <a href="/new" class="new-button">+ produk</a>
+      </div>
+      <div class="index-table-wrapper">
+        <div class="table-head">
+          <span class="id-column">Nama</span>
+          <span>Keterangan</span>
+        </div>
+        <ul class="table-body">
+          <% items.forEach((item) => { %>
+            <li>
+              <div class="item-data">
+                <span class="id-column"><%= item.nama_produk %></span>
+                <span class="name-column"><%= item.keterangan %></span><hr>
+				<span class="name-column">Harga : <%= item.harga %></span><hr>
+				<span class="name-column">Jumlah : <%= item.jumlah %></span>
+              </div>
+              <div class="item-menu">
+                <form action="/delete/<%= item.nama_produk %>" method="post">
+                  <input class="deletebutton" type="submit" value="Hapus">
+                </form>
+                <a href="/edit/<%= item.nama_produk %>">Edit</a>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
